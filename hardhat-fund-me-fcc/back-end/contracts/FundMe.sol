@@ -38,6 +38,9 @@ contract FundMe {
     }
 
     function fund() public payable {
+        console.log("===============");
+        console.log(msg.value);
+        console.log("===============");
         require(
             msg.value.getConversionRate(s_priceFeed) >= MINIMUM_USD,
             "Didn't send enough!"

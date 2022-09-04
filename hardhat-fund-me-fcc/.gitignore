@@ -1,3 +1,6 @@
+#Mac File
+*DS_Store
+
 node_modules
 .env
 coverage
@@ -8,4 +11,8 @@ typechain-types
 #Hardhat files
 cache
 artifacts
+deployments
 
+#yarn files
+yarn-error.log
+yarn.lock

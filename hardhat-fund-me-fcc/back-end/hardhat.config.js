@@ -2,9 +2,9 @@ require("@nomicfoundation/hardhat-toolbox");
 require("@nomiclabs/hardhat-etherscan");
 require("@nomicfoundation/hardhat-chai-matchers");
 require("hardhat-deploy");
-require("dotenv").config();
 require("solidity-coverage");
 require("hardhat-gas-reporter");
+require("dotenv").config();
 
 const RINKEBY_RPC_URL = process.env.RINKEBY_RPC_URL;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
