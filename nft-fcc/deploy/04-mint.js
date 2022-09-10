@@ -5,10 +5,10 @@ module.exports = async function ({ getNamedAccounts }) {
   const { deployer } = await getNamedAccounts();
 
   // Basic NFT Stuff
-  const basicNFT = await ethers.getContract("BasicNFT", deployer);
-  const basicNFTtx = await basicNFT.mintNft();
-  await basicNFTtx.wait(1);
-  console.log(`Basic NFT index 0 has TokenURI: ${await basicNFT.tokenURI(0)}`);
+  //   const basicNFT = await ethers.getContract("BasicNFT", deployer);
+  //   const basicNFTtx = await basicNFT.mintNft();
+  //   await basicNFTtx.wait(1);
+  //   console.log(`Basic NFT index 0 has TokenURI: ${await basicNFT.tokenURI(0)}`);
 
   // Random IPFS NFT Stuff
   const IpfsNFT = await ethers.getContract("RandomIpfsNft", deployer);
