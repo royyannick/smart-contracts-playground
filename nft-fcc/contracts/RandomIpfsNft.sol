@@ -6,6 +6,7 @@ pragma solidity ^0.8.7;
 // 2) Shiba: Little Rare.
 // 3) St-Bernard: Common.
 
+import "hardhat/console.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
 import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
@@ -60,6 +61,7 @@ contract RandomIpfsNft is VRFConsumerBaseV2, ERC721URIStorage, Ownable {
     }
 
     function requestNtf() public payable returns (uint256 requestId) {
+        console.log("Requesting NTF...");
         if (msg.value < i_mintFee) {
             revert RandomIpfsNft__NeedMoreETHSent();
         }
@@ -72,6 +74,7 @@ contract RandomIpfsNft is VRFConsumerBaseV2, ERC721URIStorage, Ownable {
         );
         s_requestIdToSender[requestId] = msg.sender;
 
+        console.log("NTF Requested!");
         emit NftRequested(requestId, msg.sender);
     }
 
@@ -85,9 +88,11 @@ contract RandomIpfsNft is VRFConsumerBaseV2, ERC721URIStorage, Ownable {
         uint256 moddedRng = randomWords[0] % MAX_CHANCE_VALUE;
 
         Breed dogBreed = getBreedFromRNG(moddedRng);
+        s_tokenCounter = s_tokenCounter + 1;
         _safeMint(dogOwner, newTokenID);
         _setTokenURI(newTokenID, s_dogTokenUris[uint256(dogBreed)]);
 
+        console.log("NTF Requested!");
         emit NftMinted(dogBreed, msg.sender);
     }
 
@@ -119,12 +124,6 @@ contract RandomIpfsNft is VRFConsumerBaseV2, ERC721URIStorage, Ownable {
         return [10, 30, MAX_CHANCE_VALUE];
     }
 
-    function tokenURI(uint256) public view override returns (string memory) {}
-
-    function getMintFee() public view returns (uint256) {
-        return i_mintFee;
-    }
-
     function getDogTokenUris(uint256 index)
         public
         view
@@ -135,5 +134,9 @@ contract RandomIpfsNft is VRFConsumerBaseV2, ERC721URIStorage, Ownable {
 
     function getTokenCounter() public view returns (uint256) {
         return s_tokenCounter;
+    }
+
+    function getMintFee() public view returns (uint256) {
+        return i_mintFee;
     }
 }

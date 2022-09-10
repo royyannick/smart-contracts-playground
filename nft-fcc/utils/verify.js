@@ -17,6 +17,7 @@ const verify = async (contractAddress, args) => {
       console.log(e);
     }
   }
+  console.log("Contract verified!");
 };
 
 module.exports = {
