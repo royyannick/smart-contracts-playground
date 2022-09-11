@@ -113,7 +113,7 @@ contract NftMarketplace is ReentrancyGuard {
         isListed(nftAddress, tokenId)
     {
         Listing memory listedItem = s_listings[nftAddress][tokenId];
-        if (msg.value <= listedItem.price) {
+        if (msg.value < listedItem.price) {
             revert NftMarketplace__PriceNotMet();
         }
         s_proceeds[listedItem.seller] =
