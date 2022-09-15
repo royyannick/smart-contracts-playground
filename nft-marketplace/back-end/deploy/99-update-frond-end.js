@@ -3,13 +3,29 @@ const fs = require("fs");
 const path = require("path");
 
 const frontEndContractsFile = "../front-end/constants/networkMapping.json";
+const frontEndAbiFile = "../front-end/constants/";
 
 module.exports = async function () {
   if (process.env.UPDATE_FRONT_END) {
     console.log("Updating front-end...");
     await updateContractAddress();
+    await updateAbi();
   }
 };
+
+async function updateAbi() {
+  const nftMarketplace = await ethers.getContract("NftMarketplace");
+  fs.writeFileSync(
+    `${frontEndAbiFile}NftMarketplace.json`,
+    nftMarketplace.interface.format(ethers.utils.FormatTypes.json)
+  );
+
+  const basicNFT = await ethers.getContract("BasicNFT");
+  fs.writeFileSync(
+    `${frontEndAbiFile}BasicNFT.json`,
+    basicNFT.interface.format(ethers.utils.FormatTypes.json)
+  );
+}
 
 async function updateContractAddress() {
   const nftMarketplace = await ethers.getContract("NftMarketplace");

@@ -12,6 +12,7 @@ const RINKEBY_RPC_URL = process.env.RINKEBY_RPC_URL;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const CMC_API_KEY = process.env.CMC_API_KEY;
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
+const GEORLI_RPC_URL = process.env.GEORLI_RPC_URL;
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
@@ -29,6 +30,12 @@ module.exports = {
     localhost: {
       chainId: 31337,
       blockConfirmations: 1,
+    },
+    goerli: {
+      url: GEORLI_RPC_URL,
+      accounts: [PRIVATE_KEY],
+      chainId: 5,
+      blockConfirmations: 6,
     },
     rinkeby: {
       url: RINKEBY_RPC_URL,
@@ -49,6 +56,7 @@ module.exports = {
     apiKey: {
       rinkeby: ETHERSCAN_API_KEY,
       kovan: ETHERSCAN_API_KEY,
+      goerli: ETHERSCAN_API_KEY,
       //polygon: POLYGONSCAN_API_KEY,
     },
   },

@@ -3,6 +3,7 @@ pragma solidity ^0.8.8;
 
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "hardhat/console.sol";
 
 error NftMarketplace__PriceMustBeAboveZero();
 error NftMarketplace__NotApprovedForMarketPlace();
@@ -98,6 +99,7 @@ contract NftMarketplace is ReentrancyGuard {
         }
 
         IERC721 nft = IERC721(nftAddress);
+        console.log(nft.getApproved(tokenId));
         if (nft.getApproved(tokenId) != address(this)) {
             revert NftMarketplace__NotApprovedForMarketPlace();
         }

@@ -14,6 +14,12 @@ const networkConfig = {
     mintFee: "10000000000000000", // 0.01 ETH
     interval: "30",
   },
+  5: {
+    name: "goerli",
+    callbackGasLimit: "500000",
+    mintFee: "10000000000000000", // 0.01 ETH
+    interval: "30",
+  },
   31337: {
     name: "hardhat",
     entranceFee: ethers.utils.parseEther("0.01"),
