@@ -15,7 +15,8 @@ Stack Used:
 3. Moralis (for centralized event hooks)
 4. The Graph (for decentralized event hooks)
 5. IPFS (for decentralized storage)
-6. Slinther (security & audit)
+6. Pinata (for pinning IPFS content)
+7. Slinther (security & audit)
 
 IDE:
 
